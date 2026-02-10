@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategia de Ventas: Programa RESET</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        /* Custom font import for a professional look */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6; /* Light gray background */
+        }
+
+        /* Chart Container Styling Rules - STRICT ADHERENCE */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Max width constraint */
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px; /* Default height */
+            max-height: 400px; /* Max height constraint */
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Responsive height adjustments */
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        /* Utility for flow diagram connectors */
+        .connector-line {
+            width: 2px;
+            height: 2rem;
+            background-color: #9CA3AF;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .connector-line-horizontal {
+                height: 2px;
+                width: 2rem;
+                background-color: #9CA3AF;
+                margin: auto 0;
+            }
+        }
+    </style>
+
+    <!-- 
+    SOURCE MATERIAL ANALYSIS & NARRATIVE PLAN:
+    
+    1. Introduction: Address María directly. State the goal (15 spots, €499).
+    2. The Problem: Visualize the "Trust Barrier" (Cold traffic objections).
+    3. The Solution (Funnel):
+       - Phase 1: Free Challenge (Acquisition)
+       - Phase 2: Low Ticket (Qualification/Profitability)
+       - Phase 3: Diagnostic Call (Closing/Filter)
+    4. Data Analysis:
+       - Radar Chart: Compare "Cold Traffic" vs "Hybrid Funnel" on qualitative metrics.
+       - Bar Chart: Show the "Filter Effect" (Quantity vs Quality).
+       - Doughnut: The Target (15 spots).
+    5. Conclusion: Summary of benefits (Control, Quality, ROI).
+    
+    PALETTE: Vibrant Productivity
+    - Primary: #4F46E5 (Indigo-600)
+    - Secondary: #10B981 (Emerald-500)
+    - Accent: #F59E0B (Amber-500)
+    - Background: #F3F4F6
+    -->
+</head>
+<body class="text-gray-800">
+
+    <!-- Header / Hook -->
+    <header class="bg-indigo-600 text-white py-12 px-4 shadow-lg">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Estrategia RESET</h1>
+            <p class="text-xl md:text-2xl font-light opacity-90">El camino predecible para llenar 15 plazas al mes (€499)</p>
+            <div class="mt-8 inline-block bg-indigo-800 rounded-full px-6 py-2 text-sm font-semibold tracking-wide uppercase">
+                Propuesta para María
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-16">
+
+        <!-- SECTION 1: THE DIAGNOSIS (Problem) -->
+        <section>
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">El Desafío: La Barrera de la Confianza</h2>
+                <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                    Vender un programa de €499 a tráfico frío es ineficiente. El problema no es el precio, son las objeciones internas de la clienta.
+                </p>
+            </div>
+
+            <!-- Cards for Objections -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-amber-500 transform hover:-translate-y-1 transition duration-300">
+                    <div class="text-4xl mb-4">🤔</div>
+                    <h3 class="text-xl font-bold mb-2">Duda de Identidad</h3>
+                    <p class="text-gray-600 italic">"¿Esto es realmente para mí?"</p>
+                    <p class="text-sm text-gray-400 mt-2">Solución: Reto Gratuito (Prueba)</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-amber-500 transform hover:-translate-y-1 transition duration-300">
+                    <div class="text-4xl mb-4">📉</div>
+                    <h3 class="text-xl font-bold mb-2">Miedo al Fracaso</h3>
+                    <p class="text-gray-600 italic">"¿Y si no soy constante?"</p>
+                    <p class="text-sm text-gray-400 mt-2">Solución: Quick Win (Victoria Rápida)</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-amber-500 transform hover:-translate-y-1 transition duration-300">
+                    <div class="text-4xl mb-4">⏳</div>
+                    <h3 class="text-xl font-bold mb-2">Gestión del Tiempo</h3>
+                    <p class="text-gray-600 italic">"¿Tendré el tiempo necesario?"</p>
+                    <p class="text-sm text-gray-400 mt-2">Solución: Formato Intensivo 3-5 días</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: THE SOLUTION (Flow Diagram) -->
+        <section class="bg-white rounded-2xl shadow-xl p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+            
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">La Solución: El Funnel Híbrido</h2>
+                <p class="text-lg text-gray-600">
+                    Un sistema de tres fases diseñado para filtrar curiosos y entregar solo clientas cualificadas a tu agenda.
+                </p>
+            </div>
+
+            <!-- HTML/CSS Flowchart (No Mermaid, No SVG) -->
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 relative z-10">
+                
+                <!-- Phase 1 -->
+                <div class="w-full md:w-1/4 bg-blue-50 border border-blue-200 rounded-lg p-6 text-center relative group hover:shadow-lg transition-all">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Fase 1</div>
+                    <h3 class="text-xl font-bold text-blue-800 mt-2">Captación</h3>
+                    <p class="text-sm font-semibold text-blue-600 mb-2">Reto Gratuito</p>
+                    <p class="text-xs text-gray-500">3-5 Días • WhatsApp/Email</p>
+                    <div class="mt-4 border-t border-blue-100 pt-2 text-xs text-gray-600">
+                        <strong>Obj:</strong> Confianza & Autoridad
+                    </div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="text-gray-400 text-3xl md:transform md:-rotate-90 md:mx-4">
+                    <span class="block md:hidden">↓</span>
+                    <span class="hidden md:block">→</span>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="w-full md:w-1/4 bg-indigo-50 border border-indigo-200 rounded-lg p-6 text-center relative group hover:shadow-lg transition-all">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Fase 2</div>
+                    <h3 class="text-xl font-bold text-indigo-800 mt-2">Cualificación</h3>
+                    <p class="text-sm font-semibold text-indigo-600 mb-2">Reto Low Ticket</p>
+                    <p class="text-xs text-gray-500">Precio: €10 - €21</p>
+                    <div class="mt-4 border-t border-indigo-100 pt-2 text-xs text-gray-600">
+                        <strong>Obj:</strong> Filtrar compromiso
+                    </div>
+                </div>
+
+                <!-- Arrow -->
+                <div class="text-gray-400 text-3xl md:mx-4">
+                    <span class="block md:hidden">↓</span>
+                    <span class="hidden md:block">→</span>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="w-full md:w-1/4 bg-emerald-50 border border-emerald-200 rounded-lg p-6 text-center relative group hover:shadow-lg transition-all">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Fase 3</div>
+                    <h3 class="text-xl font-bold text-emerald-800 mt-2">Cierre VIP</h3>
+                    <p class="text-sm font-semibold text-emerald-600 mb-2">Llamada Diagnóstico</p>
+                    <p class="text-xs text-gray-500">15 Minutos • Filtrado Final</p>
+                    <div class="mt-4 border-t border-emerald-100 pt-2 text-xs text-gray-600">
+                        <strong>Obj:</strong> Venta €499 (RESET)
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-8 text-center">
+                <span class="inline-block bg-gray-100 rounded-lg px-4 py-2 text-sm text-gray-600">
+                    💡 <strong>Nota:</strong> Se incluye un botón de <em>Compra Directa</em> para las decididas que no requieren llamada.
+                </span>
+            </div>
+        </section>
+
+        <!-- SECTION 3: STRATEGIC ANALYSIS (Radar Chart) -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="order-2 md:order-1">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Impacto Estratégico Comparativo</h2>
+                <p class="text-gray-600 mb-6">
+                    Al pasar de un modelo de "Tráfico Frío Directo" al "Funnel Híbrido", transformamos métricas cualitativas clave. El nuevo modelo prioriza la calidad del lead y el control de tu agenda sobre el volumen bruto.
+                </p>
+                <ul class="space-y-3 mb-6">
+                    <li class="flex items-start">
+                        <span class="text-emerald-500 mr-2">✔</span>
+                        <span class="text-sm text-gray-700"><strong>Mayor Conversión:</strong> El contacto humano en ticket medio/alto multiplica el cierre.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-emerald-500 mr-2">✔</span>
+                        <span class="text-sm text-gray-700"><strong>Control de Agenda:</strong> Tú decides con quién hablas (filtro previo).</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-emerald-500 mr-2">✔</span>
+                        <span class="text-sm text-gray-700"><strong>Rentabilidad:</strong> El Low Ticket puede cubrir tus costes de publicidad (ADS).</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Radar Chart Container -->
+            <div class="order-1 md:order-2">
+                <div class="chart-container">
+                    <canvas id="radarImpact"></canvas>
+                </div>
+                <p class="text-center text-xs text-gray-400 mt-2">Comparativa de Modelos de Venta</p>
+            </div>
+        </section>
+
+        <!-- SECTION 4: THE FILTER EFFECT (Bar Chart & Goals) -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- Chart: Funnel Filtering Logic -->
+            <div class="md:col-span-2">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900">La Lógica del Filtro</h2>
+                    <p class="text-gray-600 text-sm mt-2">
+                        Observa cómo disminuye el volumen de personas pero aumenta drásticamente la "Probabilidad de Compra" (Calidad). El comprador de Low Ticket es 10 veces más propenso a comprar el High Ticket.
+                    </p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="barFunnelFilter"></canvas>
+                </div>
+            </div>
+
+            <!-- Goal Visualization -->
+            <div class="flex flex-col justify-center bg-indigo-900 rounded-xl p-8 text-white shadow-xl">
+                <h3 class="text-xl font-bold text-center mb-6">Objetivo Mensual</h3>
+                <div class="relative w-48 h-48 mx-auto mb-6">
+                    <!-- Doughnut Chart Container -->
+                    <canvas id="doughnutGoal"></canvas>
+                    <!-- Center Text overlay -->
+                    <div class="absolute inset-0 flex items-center justify-center flex-col">
+                        <span class="text-4xl font-extrabold text-white">15</span>
+                        <span class="text-xs uppercase tracking-widest text-indigo-300">Plazas</span>
+                    </div>
+                </div>
+                <div class="text-center space-y-4">
+                    <p class="text-sm text-indigo-200">
+                        Programa 1:1 RESET<br>
+                        <span class="text-white font-bold text-lg">€499 / plaza</span>
+                    </p>
+                    <div class="border-t border-indigo-700 pt-4">
+                        <p class="text-xs text-indigo-300">Ingreso Potencial Mensual</p>
+                        <p class="text-2xl font-bold text-emerald-400">€7,485</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: SUMMARY FOOTER -->
+        <footer class="bg-gray-800 text-gray-300 rounded-2xl p-8 text-center mt-12">
+            <h3 class="text-xl font-bold text-white mb-3">Resumen Ejecutivo</h3>
+            <p class="max-w-2xl mx-auto mb-6">
+                Implementando este sistema, pasamos de "perseguir" ventas a "seleccionar" clientas. Garantizamos 15 plazas con el perfil adecuado, evitando devoluciones y desgaste energético, mientras financiamos la captación con el producto intermedio.
+            </p>
+            <div class="text-sm opacity-50">
+                &copy; Estrategia de Ventas Generada para María • Mercado Español
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- UTILITY FUNCTIONS ---
+
+        /**
+         * Splits a long label string into an array of shorter strings based on a character limit.
+         * Mandatory for keeping charts readable on small screens.
+         * @param {string} str - The label string to split.
+         * @param {number} maxLen - The maximum length of a line (default 16).
+         * @returns {string|Array<string>} - The original string if short enough, or an array of strings.
+         */
+        function splitLabel(str, maxLen = 16) {
+            if (str.length <= maxLen) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= maxLen) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // --- CHART CONFIGURATIONS ---
+        
+        // Common Color Palette
+        const colors = {
+            primary: '#4F46E5',   // Indigo
+            primaryLight: 'rgba(79, 70, 229, 0.5)',
+            secondary: '#10B981', // Emerald
+            secondaryLight: 'rgba(16, 185, 129, 0.5)',
+            accent: '#F59E0B',    // Amber
+            dark: '#1F2937',      // Gray-800
+            slate: '#94A3B8'      // Slate-400
+        };
+
+        // Common Tooltip Config (Mandatory from prompt)
+        const commonTooltip = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            },
+            backgroundColor: 'rgba(31, 41, 55, 0.9)',
+            padding: 12,
+            cornerRadius: 8,
+            titleFont: { size: 14, weight: 'bold' },
+            bodyFont: { size: 13 }
+        };
+
+        // --- CHART 1: RADAR CHART (Impact) ---
+        const ctxRadar = document.getElementById('radarImpact').getContext('2d');
+        
+        // Labels for Radar axes
+        const radarLabelsRaw = [
+            'Confianza Generada', 
+            'Calidad del Lead', 
+            'Tasa de Cierre', 
+            'Control de Agenda', 
+            'Rentabilidad (ROI)'
+        ];
+        const radarLabels = radarLabelsRaw.map(l => splitLabel(l));
+
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: radarLabels,
+                datasets: [{
+                    label: 'Modelo Híbrido (Propuesto)',
+                    data: [9, 9, 8, 10, 8],
+                    fill: true,
+                    backgroundColor: colors.secondaryLight,
+                    borderColor: colors.secondary,
+                    pointBackgroundColor: colors.secondary,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: colors.secondary
+                }, {
+                    label: 'Tráfico Frío Directo',
+                    data: [3, 4, 2, 3, 4],
+                    fill: true,
+                    backgroundColor: 'rgba(148, 163, 184, 0.2)', // Slate light
+                    borderColor: colors.slate,
+                    pointBackgroundColor: colors.slate,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: colors.slate
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                scales: {
+                    r: {
+                        angleLines: { color: '#E2E8F0' },
+                        grid: { color: '#E2E8F0' },
+                        pointLabels: {
+                            font: { size: 11, family: 'Inter' },
+                            color: colors.dark
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10,
+                        ticks: { display: false } // Hide numbers on axis for cleaner look
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: commonTooltip
+                }
+            }
+        });
+
+        // --- CHART 2: BAR CHART (Funnel Filter) ---
+        const ctxBar = document.getElementById('barFunnelFilter').getContext('2d');
+
+        // Labels
+        const barLabelsRaw = ['Reto Gratuito (Volumen)', 'Reto Low Ticket (Filtro)', 'Llamada Diagnóstico (Calidad)'];
+        const barLabels = barLabelsRaw.map(l => splitLabel(l));
+
+        new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: barLabels,
+                datasets: [
+                    {
+                        label: 'Volumen de Leads',
+                        data: [100, 40, 20], // Conceptual Volume
+                        backgroundColor: colors.primaryLight,
+                        borderColor: colors.primary,
+                        borderWidth: 1,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'Probabilidad de Cierre (%)',
+                        data: [5, 30, 80], // Conceptual Probability increasing
+                        type: 'line',
+                        borderColor: colors.accent,
+                        backgroundColor: colors.accent,
+                        borderWidth: 3,
+                        pointRadius: 5,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        display: false, // Hide axis for cleaner conceptual look
+                        title: { display: true, text: 'Volumen' }
+                    },
+                    y1: {
+                        beginAtZero: true,
+                        position: 'right',
+                        min: 0,
+                        max: 100,
+                        grid: { display: false },
+                        ticks: { callback: function(value) { return value + '%' } }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: commonTooltip
+                }
+            }
+        });
+
+        // --- CHART 3: DOUGHNUT CHART (Goal) ---
+        const ctxDoughnut = document.getElementById('doughnutGoal').getContext('2d');
+
+        new Chart(ctxDoughnut, {
+            type: 'doughnut',
+            data: {
+                labels: ['Plazas a Llenar', 'Capacidad Restante'], // Labels processed inside tooltip
+                datasets: [{
+                    data: [15, 0], // Visualizing full capacity target
+                    backgroundColor: [colors.secondary, '#E5E7EB'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                cutout: '80%', // Thinner ring
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        // Using a simplified version of the mandatory callback since labels are short here, 
+                        // but sticking to the structure for consistency/requirement.
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            },
+                            label: function(context) {
+                                return context.raw + (context.dataIndex === 0 ? ' Plazas Objetivo' : ''); 
+                            }
+                        },
+                        backgroundColor: 'rgba(31, 41, 55, 0.9)',
+                        padding: 12,
+                        cornerRadius: 8
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
